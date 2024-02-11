@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'managers/RestManager.dart';
 import 'support/Constants.dart';
 
+// Contiene i metodi che fanno chiamate al server (backend)
 class Model {
   static Model sharedIstance= Model();
 
@@ -19,5 +20,6 @@ class Model {
     }catch(err){
       print(err);
     }
+    return null;
   }
 }
