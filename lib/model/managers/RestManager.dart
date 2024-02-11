@@ -4,22 +4,23 @@ import 'package:http/http.dart';
 
 
 class RestManager {
+
+  // Metodo che esegue chiamate http
   Future<String> _makeRequest(String serverAddress, String servicePath, String method, {Map<String, String>? value, dynamic body}) async {
+
     Uri uri = Uri.http(serverAddress, servicePath, value);
 
     while ( true ) {
       try {
         var response;
         // setting content type
-        String contentType = "";
         dynamic formattedBody;
-        contentType = "application/json;charset=utf-8";
+        String contentType = "application/json;charset=utf-8";
         formattedBody = json.encode(body);  //Prendo il body e lo formatto come un json.
 
         // setting headers
         Map<String, String> headers = Map();
         headers[HttpHeaders.contentTypeHeader] = contentType;
-        headers[HttpHeaders.acceptHeader]="*/*";
 
         // making request
         switch (method) {
