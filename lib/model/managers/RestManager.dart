@@ -19,6 +19,7 @@ class RestManager {
         // setting headers
         Map<String, String> headers = Map();
         headers[HttpHeaders.contentTypeHeader] = contentType;
+        headers[HttpHeaders.acceptHeader]="*/*";
 
         // making request
         switch (method) {

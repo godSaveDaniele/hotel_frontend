@@ -1,6 +1,6 @@
 class Constants{
 
-  static final String SERVER_ADDRESS="";
-  static final String REQUEST_NATIONALITY_SCORE="";
+  static final String SERVER_ADDRESS="localhost:8080";
+  static final String REQUEST_NATIONALITY_SCORE="/nationalityScore";
 
 }
