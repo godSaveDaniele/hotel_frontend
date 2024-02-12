@@ -5,7 +5,7 @@ import 'support/Constants.dart';
 
 // Contiene i metodi che fanno chiamate al server (backend)
 class Model {
-  static Model sharedIstance= Model();
+  static Model sharedInstance= Model();
 
   RestManager _restManager = RestManager();
 

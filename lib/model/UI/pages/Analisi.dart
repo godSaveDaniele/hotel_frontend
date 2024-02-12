@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'AnalisiNazionalitaScore.dart';
 
 class Analisi extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
           controller: _tabController,
           tabs: [
             Tab(text: 'Tab 1'),
-            Tab(text: 'Tab 2'),
+            Tab(text: 'Migliori hotel in Europa'),
             Tab(text: 'Tab 3'),
           ],
         ),
@@ -38,7 +39,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
         controller: _tabController,
         children: [
           Center(child: Text('Tab 1 content')),
-          Center(child: Text('Tab 2 content')),
+          Center(child: AnalisiNazionalitaScore()),
           Center(child: Text('Tab 3 content')),
         ],
       ),
