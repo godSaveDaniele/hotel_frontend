@@ -3,9 +3,22 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class Istogramma extends StatelessWidget {
-  final Map<String, double> data;
+  late final Map<String, double> data;
 
-  Istogramma(this.data);
+  Istogramma(Map<String, double> data){
+    //ORDINO LA MAPPA PER VALORI
+    List<double> values = data.values.toList();
+    values.sort();
+    Map<String, double> mappaOrdinata = {};
+    values.forEach((valore) {
+      data.forEach((chiave, valoreMappa) {
+        if (valoreMappa == valore) {
+          mappaOrdinata[chiave] = valoreMappa;
+        }
+      });
+    });
+    this.data=mappaOrdinata;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +37,13 @@ class Istogramma extends StatelessWidget {
       child: Center(
         child: SizedBox(
           width: 500,
-          height:200,
+          height:240,
           child: BarChart(
                 BarChartData(
                   backgroundColor: Colors.yellow.withOpacity(0.1),
                   alignment: BarChartAlignment.spaceAround,
-                  minY: data.values.toList().reduce(min) -2,
-                  maxY: data.values.toList().reduce(max) + 0.5,
+                  minY: data.values.toList().reduce(min) -0.2,
+                  maxY: data.values.toList().reduce(max) + 0.2,
                   barGroups: barGroups,
                   titlesData: FlTitlesData(
                     show: true,
