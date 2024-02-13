@@ -30,7 +30,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
           controller: _tabController,
           tabs: [
             Tab(text: 'Tab 1'),
-            Tab(text: 'Migliori hotel in Europa'),
+            Tab(text: 'Score medio per nazionalità'),
             Tab(text: 'Tab 3'),
           ],
         ),

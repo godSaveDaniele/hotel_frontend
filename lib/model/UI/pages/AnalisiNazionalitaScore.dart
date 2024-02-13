@@ -33,40 +33,33 @@ class _AnalisiState extends State<AnalisiNazionalitaScore> {
 
   Widget contenuto(){
     List<String>? tmp= childKey.currentState?.getCampiSelezionati();
-    print("-----------------------------------------"+tmp.toString());
-    if (tmp==null || tmp.isEmpty){
-      print("ciao-----------------------");
-      campiSelezionati=[" Italy "];
-    }else { campiSelezionati=tmp;}
+    if (tmp==null ){
+      tmp=[];
+    }
+    campiSelezionati=tmp;
     print(dati);
     print(campiSelezionati);
     Map<String, double> datiIstogramma = seleziona(dati, campiSelezionati);
     print(datiIstogramma);
     return Row(
         children:[
-          BarraDiRicerca(key: childKey),
-          bottone(),
+          BarraDiRicerca(key: childKey, aggiorna: aggiorna,),
+          SizedBox(width:30),
           Istogramma(datiIstogramma)
         ]
     );
   }
 
-  Widget bottone(){
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          print("ciao");
-        });
-      },
-      child: Text("Ottieni istogramma"),
-    );
-  }
 
 
   Future<void> _getData() async {
     dati= (await Model.sharedInstance.getNationalityScore())!;
     setState(() {
       loading = false;
+    });
+  }
+  aggiorna(){
+    setState(() {
     });
   }
 
