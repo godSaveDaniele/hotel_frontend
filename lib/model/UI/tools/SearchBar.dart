@@ -33,10 +33,12 @@ class BarraDiRicerca extends StatelessWidget{
 class CountrySearchDelegate extends SearchDelegate<String> {
 
   final List<String> countries = [
-    'USA',
-    'Canada',
-    'UK',
+    'France',
+    'United Kingdom',
+    'Switzerland',
     'Germany',
+    'Ireland',
+    'United States of America',
     'France',
     'Italy',
     'Spain',
