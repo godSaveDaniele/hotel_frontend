@@ -32,8 +32,16 @@ class _AnalisiState extends State<AnalisiNazionalitaScore> {
   }
 
   Widget contenuto(){
-    campiSelezionati=childKey.currentState!.getCampiSelezionati();
+    List<String>? tmp= childKey.currentState?.getCampiSelezionati();
+    print("-----------------------------------------"+tmp.toString());
+    if (tmp==null || tmp.isEmpty){
+      print("ciao-----------------------");
+      campiSelezionati=[" Italy "];
+    }else { campiSelezionati=tmp;}
+    print(dati);
+    print(campiSelezionati);
     Map<String, double> datiIstogramma = seleziona(dati, campiSelezionati);
+    print(datiIstogramma);
     return Row(
         children:[
           BarraDiRicerca(key: childKey),
@@ -45,9 +53,11 @@ class _AnalisiState extends State<AnalisiNazionalitaScore> {
 
   Widget bottone(){
     return ElevatedButton(
-      onPressed:setState(() {
-        print("prova");
-      }),
+      onPressed: () {
+        setState(() {
+          print("ciao");
+        });
+      },
       child: Text("Ottieni istogramma"),
     );
   }
