@@ -22,4 +22,17 @@ class Model {
     }
     return null;
   }
+
+  Future<Map<String, List>?> getNationalityNegWords(String nationality) async {
+    try{
+      String result = await _restManager.makeGetRequest("localhost:8080", "Function1/"+nationality);
+      //print(json.decode(result));
+      return Map<String, List<dynamic>>.from(json.decode(result));
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
+
 }

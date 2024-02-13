@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../analisys/Function1.dart';
+
+
 class Analisi extends StatefulWidget {
   @override
   _Analisi createState() => _Analisi();
@@ -28,7 +31,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
         bottom: TabBar(
           controller: _tabController,
           tabs: [
-            Tab(text: 'Tab 1'),
+            Tab(text: 'Nationality Selection'),
             Tab(text: 'Tab 2'),
             Tab(text: 'Tab 3'),
           ],
@@ -37,7 +40,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Center(child: Text('Tab 1 content')),
+          Function1(),
           Center(child: Text('Tab 2 content')),
           Center(child: Text('Tab 3 content')),
         ],
