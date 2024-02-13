@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_frontend/model/UI/tools/WordCloud.dart';
 
 import 'Communicator.dart';
 
@@ -21,7 +22,7 @@ class BarraDiRicerca extends StatelessWidget{
       body: Center(
           child: Communicator.sharedInstance.isCountry
               ? Communicator.sharedInstance.isMap
-                  ? Text('MostraWordCloud')
+                  ? WordCloud(title: "Beautiful Presentation")
                   : CircularProgressIndicator()
               : Text('Click on search icon to select a country')
       ),

@@ -11,6 +11,8 @@ class Communicator {
 
   bool isMap = false;
 
+  List<Map<dynamic, dynamic>> wordCloudListMap = [];
+
   late Function _aggiornaStatoPadre;
 
 
@@ -19,8 +21,7 @@ class Communicator {
     isMap = false;
     aggiornaStato();
     Map<String, List<dynamic>>? map = await Model.sharedIstance.getNationalityNegWords(country);
-    isMap = true;
-    aggiornaStato();
+
     List<dynamic>? wordWithFreq = map?[" "+country+" "];
 
     // Conversione di List<dynamic>? in una List<Map<dynamic, dynamic>> dal momento che
@@ -28,11 +29,14 @@ class Communicator {
     List<Map<dynamic, dynamic>> formattedListMap = [];
     for (var item in wordWithFreq!) {
       if (item is List && item[0] is String && item[1] is num) {
-        formattedListMap.add({item[0]: item[1]});
+        formattedListMap.add({'word':item[0], 'value':item[1]});
       }
     }
 
+    wordCloudListMap = formattedListMap;
 
+    isMap = true;
+    aggiornaStato();
   }
 
   void setAggiornaStato(Function() aggiorna) {
