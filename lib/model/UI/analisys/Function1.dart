@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:hotel_frontend/model/UI/tools/Communicator.dart';
 
-import 'Prova.dart';
+import '../tools/SearchBar.dart';
+
 
 class Function1 extends StatefulWidget {
 
@@ -14,7 +15,17 @@ class _Function1 extends State<Function1> {
   String? selectedCountry;
 
   @override
+  void initState() {
+    super.initState();
+    Communicator.sharedInstance.setAggiornaStato(aggiorna);
+  }
+
+  aggiorna(){
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return BarraDiRicerca();
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_frontend/model/Model.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'Communicator.dart';
+
+class BarraDiRicerca extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +19,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Click on search icon to select a country'),
+          child: Communicator.sharedInstance.isCountry
+              ? Text('Click on search icon to select a country')
+              : Text('MostraWordCloud')
       ),
     );
   }
 }
+
 
 class CountrySearchDelegate extends SearchDelegate<String> {
 
@@ -73,8 +78,7 @@ class CountrySearchDelegate extends SearchDelegate<String> {
         return ListTile(
           title: Text(country),
           onTap: () {
-            var result = Model().getNationalityNegWords(country);
-
+            Communicator.sharedInstance.aggiornaStato();
             close(context, country);
           },
         );
