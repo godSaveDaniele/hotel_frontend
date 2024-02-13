@@ -22,4 +22,18 @@ class Model {
     }
     return null;
   }
+
+
+  Future<List<String>?> getAllNationality() async{
+    try{
+      String bodyRisposta= await _restManager.makeGetRequest(
+          Constants.SERVER_ADDRESS, Constants.REQUEST_NATIONALITY);
+      print(bodyRisposta);
+      List<String> output=  List<String>.from(json.decode(bodyRisposta));
+      return output;
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
 }
