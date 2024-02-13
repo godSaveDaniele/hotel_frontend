@@ -7,16 +7,21 @@ class Communicator {
 
   static Communicator sharedInstance = Communicator();
 
-  late String countryToShow;
-
   bool isCountry = false;
+
+  bool isMap = false;
 
   late Function _aggiornaStatoPadre;
 
 
-  void setCountry(String country) {
+  Future<void> setCountry(String country) async {
     isCountry = true;
-    countryToShow = country;
+    isMap = false;
+    aggiornaStato();
+    var map = await Model.sharedIstance.getNationalityNegWords(country);
+    isMap = true;
+    aggiornaStato();
+
   }
 
   void setAggiornaStato(Function() aggiorna) {

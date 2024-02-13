@@ -20,8 +20,10 @@ class BarraDiRicerca extends StatelessWidget{
       ),
       body: Center(
           child: Communicator.sharedInstance.isCountry
-              ? Text('Click on search icon to select a country')
-              : Text('MostraWordCloud')
+              ? Communicator.sharedInstance.isMap
+                  ? Text('MostraWordCloud')
+                  : CircularProgressIndicator()
+              : Text('Click on search icon to select a country')
       ),
     );
   }
@@ -78,7 +80,7 @@ class CountrySearchDelegate extends SearchDelegate<String> {
         return ListTile(
           title: Text(country),
           onTap: () {
-            Communicator.sharedInstance.aggiornaStato();
+            Communicator.sharedInstance.setCountry(country);
             close(context, country);
           },
         );
