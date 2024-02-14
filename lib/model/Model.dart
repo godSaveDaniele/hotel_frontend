@@ -45,5 +45,35 @@ class Model {
     return null;
   }
 
+  Future<Map<String, double>?> getNationalityClass(String nationality) async {
+    try{
+      String result = await _restManager.makeGetRequest("localhost:8080", "Function2/"+nationality);
+      //String result = '{" Angola ":{"0":80.32258064516128,"2":20.67741935483871}}';
+
+      // Decodifica il JSON in un Map<String, dynamic>
+      Map<String, dynamic> jsonMap = json.decode(result);
+
+      // Mappa in cui verranno memorizzati i valori convertiti
+      Map<String, Map<String, double>> newResult = {};
+
+      // Itera attraverso ogni coppia chiave-valore nel JSON
+      jsonMap.forEach((key, value) {
+        // Converte il valore interno in un Map<String, double>
+        Map<String, double> innerMap = {};
+        value.forEach((innerKey, innerValue) {
+          innerMap[innerKey] = innerValue.toDouble();
+        });
+
+        // Aggiunge la coppia chiave-valore alla mappa risultante
+        newResult[key.trim()] = innerMap;
+      });
+
+      return newResult[nationality];
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
 
 }

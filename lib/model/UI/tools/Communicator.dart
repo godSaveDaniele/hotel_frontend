@@ -19,7 +19,11 @@ class Communicator {
 
   bool nationalityLoaded = false;
   late List<String> nationalityList;
+
   String nationalitySelected = "Select nationality";
+  bool nationalityClassificationLoaded = false;
+  late Map<String, double> nationalityClassification;
+  bool sendingRequest = false;
 
 
   Future<void> setCountry(String country) async {
@@ -64,26 +68,27 @@ class Communicator {
   // Questo metodo serve a caricare le nazionalità dal backend nel momento in cui
   // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
   Future<void> loadNationality() async {
-    nationalityList = (await Model.sharedIstance.getAllNationality())!;
-    print(hasDuplicateStrings(nationalityList));
+    nationalityList = (await Model.sharedIstance.getAllNationality())!.map((e) => e.trim()).toList();
+    nationalityList.sort();
     nationalityLoaded = true;
     aggiornaStato2();
   }
 
-  bool hasDuplicateStrings(List<String> strings) {
-    Set<String> encounteredStrings = Set<String>();
-
-    for (String string in strings) {
-      if (encounteredStrings.contains(string)) {
-        return true; // Se la stringa è già stata incontrata, restituisci true
-      } else {
-        encounteredStrings.add(string); // Aggiungi la stringa al set
-      }
-    }
-
-    return false; // Se nessuna stringa duplicata è stata trovata, restituisci false
+  Future<void> getNationalityClass(String nationality) async {
+    sendingRequest = true;
+    aggiornaStato2();
+    nationalitySelected = nationality;
+    nationalityClassification = (await Model.sharedIstance.getNationalityClass(nationality))!;
+    if (nationalityClassification['0'] == null)
+      nationalityClassification['0'] = 0.0;
+    if (nationalityClassification['1'] == null)
+      nationalityClassification['1'] = 0.0;
+    if (nationalityClassification['2'] == null)
+      nationalityClassification['2'] = 0.0;
+    nationalityClassificationLoaded = true;
+    sendingRequest = false;
+    aggiornaStato2();
   }
-
 
 
 }

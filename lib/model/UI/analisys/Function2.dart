@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../tools/Analisi2.dart';
+import '../tools/ShowClassNationality.dart';
 import '../tools/Communicator.dart';
 
 
