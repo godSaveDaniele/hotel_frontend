@@ -53,28 +53,59 @@ class PieChartWidget extends StatelessWidget {
           alignment: Alignment.topCenter,
             children: [
 
-                  Text(Communicator.sharedInstance.nationalitySelected),
+                  Positioned(
+                      left: 15,
+                      child: Text(Communicator.sharedInstance.nationalitySelected,
+                        style: TextStyle(
+                        fontSize: 20, // Modifica la dimensione del carattere
+                        fontWeight: FontWeight.bold, // Rende il testo in grassetto
+                        color: Colors.blue, // Cambia il colore del testo
+                        letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+                      ),)
+                  ),
 
                   Communicator.sharedInstance.nationalityClassificationLoaded
                       ?
-                  PieChart(
-                    swapAnimationDuration: const Duration(milliseconds: 750),
-                    swapAnimationCurve: Curves.easeInOutQuint, // animazione della modifica delle curve del grafico
-                    PieChartData(
-                      sections: pieChartSections(),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: 40,
-                      startDegreeOffset: 180,
-                      borderData: FlBorderData(show: false),
-                      pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {}),
-                    ),
-                  )
+                      Stack(
+                        children: [
+                          PieChart(
+                            swapAnimationDuration: const Duration(milliseconds: 750),
+                            swapAnimationCurve: Curves.easeInOutQuint, // animazione della modifica delle curve del grafico
+                            PieChartData(
+                              sections: pieChartSections(),
+                              sectionsSpace: 0,
+                              centerSpaceRadius: 40,
+                              startDegreeOffset: 180,
+                              borderData: FlBorderData(show: false),
+                              pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {}),
+                            ),
+                          ),
+
+                          SizedBox(
+
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildLegendItem(Colors.blue, 'Classe 1'),
+                                _buildLegendItem(Colors.green, 'Classe 2'),
+                                _buildLegendItem(Colors.red, 'Classe 3'),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+
                       : Text(""),
+
                   Communicator.sharedInstance.sendingRequest
-                      ? CircularProgressIndicator(
-                    strokeWidth: 2, // Imposta lo spessore della linea del cerchio
-                  )
+                      ? Positioned(
+                        top: 30,
+                        left: 35,
+
+                        child: CircularProgressIndicator( strokeWidth: 2 ) // Imposta lo spessore della linea del cerchio
+                        )
                       : Text("")
+
                 ],
               )
 
@@ -94,7 +125,7 @@ class PieChartWidget extends StatelessWidget {
           return PieChartSectionData(
             color: Colors.blue,
             value: classified['0'],
-            title: 'Prima classe',
+            title: classified['0']!.toInt().toString()+"%",
             radius: radius,
             //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
           );
@@ -102,7 +133,7 @@ class PieChartWidget extends StatelessWidget {
           return PieChartSectionData(
             color: Colors.green,
             value: classified['1'],
-            title: 'Seconda classe',
+            title: classified['1']!.toInt().toString()+"%",
             radius: radius,
             //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
           );
@@ -110,7 +141,7 @@ class PieChartWidget extends StatelessWidget {
           return PieChartSectionData(
             color: Colors.red,
             value: classified['2'],
-            title: 'Terza classe',
+            title: classified['2']!.toInt().toString()+"%",
             radius: radius,
             //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
           );
@@ -120,4 +151,18 @@ class PieChartWidget extends StatelessWidget {
     });
 
   }
+}
+
+Widget _buildLegendItem(Color color, String label) {
+  return Row(
+    children: [
+      Container(
+        width: 16,
+        height: 16,
+        color: color,
+      ),
+      SizedBox(width: 4),
+      Text(label),
+    ],
+  );
 }

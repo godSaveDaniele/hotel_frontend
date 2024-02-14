@@ -47,8 +47,8 @@ class Model {
 
   Future<Map<String, double>?> getNationalityClass(String nationality) async {
     try{
-      String result = await _restManager.makeGetRequest("localhost:8080", "Function2/"+nationality);
-      //String result = '{" Angola ":{"0":80.32258064516128,"2":20.67741935483871}}';
+      //String result = await _restManager.makeGetRequest("localhost:8080", "Function2/"+nationality);
+      String result = '{" Angola ":{"0":80.32258064516128,"2":20.67741935483871}}';
 
       // Decodifica il JSON in un Map<String, dynamic>
       Map<String, dynamic> jsonMap = json.decode(result);
