@@ -8,9 +8,7 @@ class Communicator {
   static Communicator sharedInstance = Communicator();
 
   bool isCountry = false;
-
   bool isMap = false;
-
   List<Map<dynamic, dynamic>> wordCloudListMap = [];
 
   // Used for Function1
@@ -18,6 +16,10 @@ class Communicator {
 
   // Used for Function2
   late Function _aggiornaStatoPadre2;
+
+  bool nationalityLoaded = false;
+  late List<String> nationalityList;
+  String nationalitySelected = "Select nationality";
 
 
   Future<void> setCountry(String country) async {
@@ -61,9 +63,27 @@ class Communicator {
 
   // Questo metodo serve a caricare le nazionalità dal backend nel momento in cui
   // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
-  void loadNationality() {
-
+  Future<void> loadNationality() async {
+    nationalityList = (await Model.sharedIstance.getAllNationality())!;
+    print(hasDuplicateStrings(nationalityList));
+    nationalityLoaded = true;
+    aggiornaStato2();
   }
+
+  bool hasDuplicateStrings(List<String> strings) {
+    Set<String> encounteredStrings = Set<String>();
+
+    for (String string in strings) {
+      if (encounteredStrings.contains(string)) {
+        return true; // Se la stringa è già stata incontrata, restituisci true
+      } else {
+        encounteredStrings.add(string); // Aggiungi la stringa al set
+      }
+    }
+
+    return false; // Se nessuna stringa duplicata è stata trovata, restituisci false
+  }
+
 
 
 }

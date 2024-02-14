@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../tools/Analisi2.dart';
 import '../tools/Communicator.dart';
 
 
@@ -26,11 +27,7 @@ class _Function2 extends State<Function2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-
-    );
+    return Analisi2();
   }
-
 
 }

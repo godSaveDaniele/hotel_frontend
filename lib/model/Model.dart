@@ -34,5 +34,16 @@ class Model {
     return null;
   }
 
+  Future<List<String>?> getAllNationality() async {
+    try{
+      String result = await _restManager.makeGetRequest("localhost:8080", "GetAllNationality");
+      //print(json.decode(result));
+      return List<String>.from(json.decode(result));
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
 
 }

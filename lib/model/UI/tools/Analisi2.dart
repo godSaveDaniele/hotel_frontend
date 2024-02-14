@@ -1,46 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:hotel_frontend/model/UI/tools/Communicator.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class Analisi2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Pie Chart with Legend'),
-        ),
+    return Communicator.sharedInstance.nationalityLoaded
+      ? Scaffold(
         body: Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // DropdownButton a sinistra
-                DropdownButton<String>(
-                  value: 'Elemento 1',
-                  onChanged: (String? newValue) {
-                    // Azioni quando l'utente seleziona un nuovo valore
-                  },
-                  items: ['Elemento 1', 'Elemento 2', 'Elemento 3']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // DropdownButton a sinistra
+                  DropdownButton<String>(
+                    value: null,
+                    onChanged: (String? newValue) {
+                      Communicator.sharedInstance.nationalitySelected = newValue!;
+                      Communicator.sharedInstance.aggiornaStato2();
+                    },
+                    items: Communicator.sharedInstance.nationalityList
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
 
-                // Diagramma a torta a destra
-                PieChartWidget(),
-              ],
-            ),
-          )
+                  // Diagramma a torta a destra
+                  PieChartWidget(),
+                ],
+              ),
+            )
         ),
-      ),
+    )
+      : Center(
+        child: CircularProgressIndicator(
+        strokeWidth: 2, // Imposta lo spessore della linea del cerchio
+        ),
     );
   }
 }
