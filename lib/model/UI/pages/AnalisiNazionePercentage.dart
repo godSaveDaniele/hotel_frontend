@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:countries_world_map/data/maps/world_map.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -77,6 +78,53 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
                 },
               ),
             )
+        )
+    );
+  }
+
+  Widget PieChartWidget(String nazione){
+    return AspectRatio(
+      aspectRatio: 1.3,
+      child:
+        Stack(
+          alignment: Alignment.topCenter,
+            children: [
+                Positioned(
+                      left: 15,
+                      child: Text(nazione,
+                        style: const TextStyle(
+                        fontSize: 20, // Modifica la dimensione del carattere
+                        fontWeight: FontWeight.bold, // Rende il testo in grassetto
+                        color: Colors.blue, // Cambia il colore del testo
+                        letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+                      ),)
+                  ),
+                Stack(
+                  children: [
+                    PieChart(
+                      PieChartData(
+                        sections: pieChartSections(),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 40,
+                        startDegreeOffset: 180,
+                        borderData: FlBorderData(show: false),
+                        ),
+                    ),
+                    Positioned(
+                         top: 300,
+                           child: _buildLegendItem(Colors.blue, 'Classe 1')
+                       ),
+                    Positioned(
+                        top: 330,
+                        child: _buildLegendItem(Colors.green, 'Classe 2')
+                    ),
+                    Positioned(
+                        top: 360,
+                        child: _buildLegendItem(Colors.red, 'Classe 3')
+                    ),
+                  ],
+                )
+            ],
         )
     );
   }
