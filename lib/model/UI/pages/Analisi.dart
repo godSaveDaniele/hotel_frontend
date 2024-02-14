@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'AnalisiNazionalitaScore.dart';
 
 import '../analisys/Function1.dart';
 
@@ -32,7 +33,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
           controller: _tabController,
           tabs: [
             Tab(text: 'Nationality Selection'),
-            Tab(text: 'Tab 2'),
+            Tab(text: 'Score medio per nazionalità'),
             Tab(text: 'Tab 3'),
           ],
         ),
@@ -40,8 +41,10 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Function1(),
+
           Center(child: Text('Tab 2 content')),
+          Center(child: AnalisiNazionalitaScore()),
+          Function1(),
           Center(child: Text('Tab 3 content')),
         ],
       ),
