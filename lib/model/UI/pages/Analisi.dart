@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../analisys/Function1.dart';
+import '../analisys/Function2.dart';
 
 
 class Analisi extends StatefulWidget {
@@ -33,7 +34,7 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
           tabs: [
             Tab(text: 'Nationality Selection'),
             Tab(text: 'Tab 2'),
-            Tab(text: 'Tab 3'),
+            Tab(text: 'Clustering Nationality'),
           ],
         ),
       ),
@@ -42,9 +43,10 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
         children: [
           Function1(),
           Center(child: Text('Tab 2 content')),
-          Center(child: Text('Tab 3 content')),
+          Function2(),
         ],
       ),
     );
   }
 }
+

@@ -13,7 +13,11 @@ class Communicator {
 
   List<Map<dynamic, dynamic>> wordCloudListMap = [];
 
-  late Function _aggiornaStatoPadre;
+  // Used for Function1
+  late Function _aggiornaStatoPadre1;
+
+  // Used for Function2
+  late Function _aggiornaStatoPadre2;
 
 
   Future<void> setCountry(String country) async {
@@ -39,14 +43,27 @@ class Communicator {
     aggiornaStato();
   }
 
-  void setAggiornaStato(Function() aggiorna) {
-    _aggiornaStatoPadre = aggiorna;
+  // Used for Function1
+  void setAggiornaStato1(Function() aggiorna) {
+    _aggiornaStatoPadre1 = aggiorna;
   }
-
   void aggiornaStato() {
-    _aggiornaStatoPadre.call();
+    _aggiornaStatoPadre1.call();
   }
 
+  // Used for Function2
+  void setAggiornaStato2(Function() aggiorna) {
+    _aggiornaStatoPadre2 = aggiorna;
+  }
+  void aggiornaStato2() {
+    _aggiornaStatoPadre2.call();
+  }
+
+  // Questo metodo serve a caricare le nazionalità dal backend nel momento in cui
+  // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
+  void loadNationality() {
+
+  }
 
 
 }
