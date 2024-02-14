@@ -80,18 +80,19 @@ class PieChartWidget extends StatelessWidget {
                               pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {}),
                             ),
                           ),
+                           Positioned(
+                             top: 300,
+                               child: _buildLegendItem(Colors.blue, 'Classe 1')
+                           ),
+                          Positioned(
+                              top: 330,
+                              child: _buildLegendItem(Colors.green, 'Classe 2')
+                          ),
+                          Positioned(
+                              top: 360,
+                              child: _buildLegendItem(Colors.red, 'Classe 3')
+                          ),
 
-                          SizedBox(
-
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _buildLegendItem(Colors.blue, 'Classe 1'),
-                                _buildLegendItem(Colors.green, 'Classe 2'),
-                                _buildLegendItem(Colors.red, 'Classe 3'),
-                              ],
-                            ),
-                          )
                         ],
                       )
 
