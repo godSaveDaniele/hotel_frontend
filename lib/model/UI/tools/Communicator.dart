@@ -20,7 +20,7 @@ class Communicator {
     isCountry = true;
     isMap = false;
     aggiornaStato();
-    Map<String, List<dynamic>>? map = await Model.sharedIstance.getNationalityNegWords(country);
+    Map<String, List<dynamic>>? map = await Model.sharedInstance.getNationalityNegWords(country);
 
     List<dynamic>? wordWithFreq = map?[" "+country+" "];
 
