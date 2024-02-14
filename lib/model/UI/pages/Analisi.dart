@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'AnalisiNazionalitaScore.dart';
+import 'AnalisiNazionePercentage.dart';
+
 
 import '../analisys/Function1.dart';
+
 
 
 class Analisi extends StatefulWidget {
@@ -41,11 +44,9 @@ class _Analisi extends State<Analisi> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-
-          Center(child: Text('Tab 2 content')),
-          Center(child: AnalisiNazionalitaScore()),
           Function1(),
-          Center(child: Text('Tab 3 content')),
+          Center(child: AnalisiNazionalitaScore()),
+          AnalisiNazionePercentage(),
         ],
       ),
     );
