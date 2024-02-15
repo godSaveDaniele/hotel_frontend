@@ -7,25 +7,27 @@ class BarraDiRicerca extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    Communicator.sharedInstance.loadCountry();
     return Scaffold(
       appBar: AppBar(
         title: Text(''),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: CountrySearchDelegate());
-            },
+            onPressed:
+            Communicator.sharedInstance.nationWordLoaded
+            ? () { showSearch(context: context, delegate: CountrySearchDelegate()); }
+            : null
           ),
         ],
       ),
       body: Center(
-          child: Communicator.sharedInstance.isCountry
-              ? Communicator.sharedInstance.isMap
-                  ? WordCloud(title: "Beautiful Presentation")
-                  : CircularProgressIndicator()
-              : Text('Click on search icon to select a country')
-      ),
+          child: Communicator.sharedInstance.nationWordLoaded
+              ? Communicator.sharedInstance.nationReady
+                ? WordCloud(title: "Beautiful Presentation")
+                : Text('Click on search icon to select a country')
+              : Center( child: CircularProgressIndicator( strokeWidth: 2, ), ),
+      )
     );
   }
 }

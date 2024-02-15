@@ -34,10 +34,9 @@ class Model {
     return null;
   }
 
-
-  Future<Map<String, List>?> getNationalityNegWords(String nationality) async {
+  Future<Map<String, List>?> loadNationalityNegWords() async {
     try{
-      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function1/"+nationality);
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function1");
       //print(json.decode(result));
       return Map<String, List<dynamic>>.from(json.decode(result));
     }catch(err){

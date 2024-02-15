@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import '../analisys/ClassificazioneNazionalità.dart';
+import '../analysis/ClassificazioneNazionalità.dart';
+import '../analysis/WordCloudNationality.dart';
 import 'AnalisiNazionalitaScore.dart';
 import 'AnalisiNazionePercentage.dart';
-
-
-import '../analisys/WordCloudNationality.dart';
 
 
 

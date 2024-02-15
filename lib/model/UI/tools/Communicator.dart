@@ -7,8 +7,9 @@ class Communicator {
 
   static Communicator sharedInstance = Communicator();
 
-  bool isCountry = false;
-  bool isMap = false;
+  bool nationWordLoaded = false;
+  bool nationReady = false;
+  late Map<String, List<dynamic>> nationalityWord;
   List<Map<dynamic, dynamic>> wordCloudListMap = [];
 
   // Used for Function1
@@ -27,13 +28,15 @@ class Communicator {
   late Map<String, double> classification;
 
 
-  Future<void> setCountry(String country) async {
-    isCountry = true;
-    isMap = false;
+  Future<void> loadCountry() async {
+    nationalityWord = (await Model.sharedInstance.loadNationalityNegWords())!;
+    nationWordLoaded = true;
     aggiornaStato();
-    Map<String, List<dynamic>>? map = await Model.sharedInstance.getNationalityNegWords(country);
+  }
 
-    List<dynamic>? wordWithFreq = map?[" "+country+" "];
+  void setCountry(String country) {
+    nationReady = true;
+    List<dynamic>? wordWithFreq = nationalityWord[" "+country+" "];
 
     // Conversione di List<dynamic>? in una List<Map<dynamic, dynamic>> dal momento che
     // WorldCloud si aspetta di ricevere una List<Map<dynamic, dynamic>>
@@ -45,8 +48,6 @@ class Communicator {
     }
 
     wordCloudListMap = formattedListMap;
-
-    isMap = true;
     aggiornaStato();
   }
 

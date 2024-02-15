@@ -20,7 +20,6 @@ class _WordCloud extends State<WordCloud> {
 
     WordCloudData wcdata = WordCloudData(data: Communicator.sharedInstance.wordCloudListMap);
 
-
     return Scaffold(
       body: SizedBox.expand(
         child: WordCloudView(
