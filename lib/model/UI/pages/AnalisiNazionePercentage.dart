@@ -24,8 +24,8 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
   Widget build(BuildContext context) {
     if (loading) {
       _getData();
-      return Container(
-          child:
+      return Scaffold(
+          body:
           Center(
               child: CircularProgressIndicator()
           )
