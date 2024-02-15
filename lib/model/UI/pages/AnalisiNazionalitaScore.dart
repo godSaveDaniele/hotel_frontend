@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hotel_frontend/model/UI/pages/Istogramma.dart';
+import 'package:hotel_frontend/model/UI/toolsdaniele/Istogramma.dart';
 import '../../Model.dart';
-import 'BarraDiRicerca.dart';
+import '../toolsdaniele/BarraDiRicerca.dart';
 
 class AnalisiNazionalitaScore extends StatefulWidget{
 

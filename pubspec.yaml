@@ -39,6 +39,7 @@ dependencies:
   http: ^1.0.0
   url_launcher: ^6.1.11
   fl_chart: ^0.35.0
+  countries_world_map: ^1.1.1
 
 dev_dependencies:
   flutter_test:

@@ -47,4 +47,17 @@ class Model {
     return null;
   }
 
+  Future<Map<String, List<dynamic>>?> getNationPercentage() async{
+    try{
+      String bodyRisposta= await _restManager.makeGetRequest(
+          Constants.SERVER_ADDRESS, Constants.REQUEST_NATION_PERCENTAGE);
+      Map<String, List<dynamic>> output=  Map<String, List<dynamic>>.from(json.decode(bodyRisposta));
+      print(output);
+      return output;
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
 }
