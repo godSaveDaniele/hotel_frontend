@@ -44,6 +44,8 @@ class Analisi2 extends StatelessWidget {
 }
 
 class PieChartWidget extends StatelessWidget {
+  final List<Color> classColors = [Colors.blue, Colors.green, Colors.red];
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -116,42 +118,26 @@ class PieChartWidget extends StatelessWidget {
   }
 
   List<PieChartSectionData> pieChartSections() {
-    return List.generate(3, (i) {
-      final isTouched = i == 1; // selezionare la classe piu' significativa
-      final double radius = isTouched ? 60 : 50;
       Map<String, double> classified = Communicator.sharedInstance.classification;
+      List<PieChartSectionData> result = [];
 
-      switch (i) {
-        case 0:
-          return PieChartSectionData(
-            color: Colors.blue,
-            value: classified['0'],
-            title: classified['0']!.toInt().toString()+"%",
-            radius: radius,
+      for (int i = 0; i < 3; i++) {
+        String ind = i.toString();
+        if (classified[ind] != 0)
+          result.add(PieChartSectionData(
+            color: classColors[i],
+            value: classified[ind],
+            title: classified[ind]!.toInt().toString()+"%",
+            radius: i == 1? 60:50,
             //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: Colors.green,
-            value: classified['1'],
-            title: classified['1']!.toInt().toString()+"%",
-            radius: radius,
-            //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: Colors.red,
-            value: classified['2'],
-            title: classified['2']!.toInt().toString()+"%",
-            radius: radius,
-            //titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
-          );
-        default:
-          throw Error();
+          ));
       }
-    });
 
-  }
+      return result;
+    }
+
+
+
 }
 
 Widget _buildLegendItem(Color color, String label) {
