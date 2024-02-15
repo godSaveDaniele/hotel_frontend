@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_frontend/model/UI/pages/Layout.dart';
+import 'package:hotel_frontend/model/UI/pages/Layout2.dart';
 
 import '../support/Constants.dart';
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Layout(title: Constants.APP_NAME), //home e' la prima pagina che viene segnata
+      home: Layout2(), //home e' la prima pagina che viene segnata
     );
   }
 }
