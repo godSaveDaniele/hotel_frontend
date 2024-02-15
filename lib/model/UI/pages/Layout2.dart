@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../analisys/ClassificazioneNazionalità.dart';
 import 'AnalisiNazionalitaScore.dart';
 import 'AnalisiNazionePercentage.dart';
 
 
-import '../analisys/Function1.dart';
+import '../analisys/WordCloudNationality.dart';
 
 
 
@@ -61,11 +62,21 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                         }
                     ),
                     ListTile(
-                        leading: Icon(Icons.pie_chart),
-                        title: Text("Funzione schifosa di Alessandro"),
+                        leading: Icon(Icons.abc),
+                        title: Text("WordCloud per nazionalità"),
                         onTap: () {
                           setState(() {
                             paginaCorrente = 2;
+                          });
+                          Navigator.pop(context); // Chiudi il Drawer
+                        }
+                    ),
+                    ListTile(
+                        leading: Icon(Icons.pie_chart),
+                        title: Text("Classificazione della significatività per nazionalità"),
+                        onTap: () {
+                          setState(() {
+                            paginaCorrente = 3;
                           });
                           Navigator.pop(context); // Chiudi il Drawer
                         }
@@ -99,6 +110,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
       case(0):return AnalisiNazionalitaScore();
       case(1):return AnalisiNazionePercentage();
       case(2):return Function1();
+      case(3):return Function2();
     }
   }
 }

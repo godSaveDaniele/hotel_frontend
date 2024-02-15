@@ -8,12 +8,23 @@ class Communicator {
   static Communicator sharedInstance = Communicator();
 
   bool isCountry = false;
-
   bool isMap = false;
-
   List<Map<dynamic, dynamic>> wordCloudListMap = [];
 
-  late Function _aggiornaStatoPadre;
+  // Used for Function1
+  late Function _aggiornaStatoPadre1;
+
+  // Used for Function2
+  late Function _aggiornaStatoPadre2;
+
+  bool nationalityLoaded = false;
+  late List<String> nationalityList;
+
+  String nationalitySelected = "Select nationality";
+  bool nationalityClassificationLoaded = false;
+  late Map<String,Map<String, double>> nationalityClassification;
+  bool sendingRequest = false;
+  late Map<String, double> classification;
 
 
   Future<void> setCountry(String country) async {
@@ -39,14 +50,50 @@ class Communicator {
     aggiornaStato();
   }
 
-  void setAggiornaStato(Function() aggiorna) {
-    _aggiornaStatoPadre = aggiorna;
+  // Used for Function1
+  void setAggiornaStato1(Function() aggiorna) {
+    _aggiornaStatoPadre1 = aggiorna;
   }
-
   void aggiornaStato() {
-    _aggiornaStatoPadre.call();
+    _aggiornaStatoPadre1.call();
   }
 
+  // Used for Function2
+  void setAggiornaStato2(Function() aggiorna) {
+    _aggiornaStatoPadre2 = aggiorna;
+  }
+  void aggiornaStato2() {
+    _aggiornaStatoPadre2.call();
+  }
+
+  // Questo metodo serve a caricare le nazionalità dal backend nel momento in cui
+  // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
+  // Aggiunta: il metodo carica anche tutte le classificazioni di ogni nazionalità.
+  Future<void> loadNationality() async {
+    nationalityList = (await Model.sharedInstance.getAllNationality2())!.map((e) => e.trim()).toList();
+    nationalityList.sort();
+    nationalityClassification = (await Model.sharedInstance.getNationalityClass())!;
+    nationalityLoaded = true;
+    aggiornaStato2();
+  }
+
+  // Il seguente metodo non esegue piu' una chiamata http ma accede normalmente alla
+  // mappa nationalityClassification e restituisce la classificazione per la nationality passata.
+  void getNationalityClass(String nationality)  {
+    sendingRequest = true;
+    aggiornaStato2();
+    nationalitySelected = nationality;
+    classification = nationalityClassification[nationality]!;
+    if (classification['0'] == null)
+      classification['0'] = 0.0;
+    if (classification['1'] == null)
+      classification['1'] = 0.0;
+    if (classification['2'] == null)
+      classification['2'] = 0.0;
+    nationalityClassificationLoaded = true;
+    sendingRequest = false;
+    aggiornaStato2();
+  }
 
 
 }

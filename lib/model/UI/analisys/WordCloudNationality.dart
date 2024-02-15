@@ -12,12 +12,11 @@ class Function1 extends StatefulWidget {
 }
 
 class _Function1 extends State<Function1> {
-  String? selectedCountry;
 
   @override
   void initState() {
     super.initState();
-    Communicator.sharedInstance.setAggiornaStato(aggiorna);
+    Communicator.sharedInstance.setAggiornaStato1(aggiorna);
   }
 
   aggiorna(){

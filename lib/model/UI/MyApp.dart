@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Constants.APP_NAME,
       theme: ThemeData(
+        useMaterial3: false,
         primaryColor: Colors.indigo,
         colorScheme: ColorScheme.fromSwatch().copyWith(
           background: Colors.white,
