@@ -29,7 +29,6 @@ class Istogramma extends StatelessWidget {
       data.forEach((key, value) {
         List<BarChartRodData> astine = [];
         astine.add(BarChartRodData(y: value, colors: [Colors.red]));
-
         barGroups.add(BarChartGroupData(
           x: data.keys.toList().indexOf(key),
           barRods: astine,

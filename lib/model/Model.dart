@@ -22,7 +22,6 @@ class Model {
   }
 
 
-
   Future<List<String>?> getAllNationality() async{
     try{
       String bodyRisposta= await _restManager.makeGetRequest(
@@ -38,7 +37,7 @@ class Model {
 
   Future<Map<String, List>?> getNationalityNegWords(String nationality) async {
     try{
-      String result = await _restManager.makeGetRequest("localhost:8080", "Function1/"+nationality);
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function1/"+nationality);
       //print(json.decode(result));
       return Map<String, List<dynamic>>.from(json.decode(result));
     }catch(err){
@@ -59,9 +58,10 @@ class Model {
     }
     return null;
   }
-  Future<List<String>?> getAllNationality() async {
+
+  Future<List<String>?> getAllNationality2() async {
     try{
-      String result = await _restManager.makeGetRequest("localhost:8080", "GetAllNationality");
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "GetAllNationality");
       //print(json.decode(result));
       return List<String>.from(json.decode(result));
     }catch(err){
@@ -72,8 +72,7 @@ class Model {
 
   Future<Map<String,Map<String, double>>?> getNationalityClass() async {
     try{
-      String result = await _restManager.makeGetRequest("localhost:8080", "Function2");
-      //String result = '{" Angola ":{"0":80.32258064516128,"2":20.67741935483871}}';
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function2");
 
       // Decodifica il JSON in un Map<String, dynamic>
       Map<String, dynamic> jsonMap = json.decode(result);

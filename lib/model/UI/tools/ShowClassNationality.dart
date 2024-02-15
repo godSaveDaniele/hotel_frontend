@@ -77,7 +77,7 @@ class PieChartWidget extends StatelessWidget {
                               centerSpaceRadius: 40,
                               startDegreeOffset: 180,
                               borderData: FlBorderData(show: false),
-                              pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {}),
+                              //pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {}),
                             ),
                           ),
                            Positioned(

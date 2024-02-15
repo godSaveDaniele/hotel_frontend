@@ -70,9 +70,9 @@ class Communicator {
   // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
   // Aggiunta: il metodo carica anche tutte le classificazioni di ogni nazionalità.
   Future<void> loadNationality() async {
-    nationalityList = (await Model.sharedIstance.getAllNationality())!.map((e) => e.trim()).toList();
+    nationalityList = (await Model.sharedInstance.getAllNationality2())!.map((e) => e.trim()).toList();
     nationalityList.sort();
-    nationalityClassification = (await Model.sharedIstance.getNationalityClass())!;
+    nationalityClassification = (await Model.sharedInstance.getNationalityClass())!;
     nationalityLoaded = true;
     aggiornaStato2();
   }
