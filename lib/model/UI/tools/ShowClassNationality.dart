@@ -119,7 +119,7 @@ class PieChartWidget extends StatelessWidget {
     return List.generate(3, (i) {
       final isTouched = i == 1; // selezionare la classe piu' significativa
       final double radius = isTouched ? 60 : 50;
-      Map<String, double> classified = Communicator.sharedInstance.nationalityClassification;
+      Map<String, double> classified = Communicator.sharedInstance.classification;
 
       switch (i) {
         case 0:

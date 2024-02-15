@@ -45,9 +45,9 @@ class Model {
     return null;
   }
 
-  Future<Map<String, double>?> getNationalityClass(String nationality) async {
+  Future<Map<String,Map<String, double>>?> getNationalityClass() async {
     try{
-      String result = await _restManager.makeGetRequest("localhost:8080", "Function2/"+nationality);
+      String result = await _restManager.makeGetRequest("localhost:8080", "Function2");
       //String result = '{" Angola ":{"0":80.32258064516128,"2":20.67741935483871}}';
 
       // Decodifica il JSON in un Map<String, dynamic>
@@ -68,7 +68,7 @@ class Model {
         newResult[key.trim()] = innerMap;
       });
 
-      return newResult[nationality];
+      return newResult;
     }catch(err){
       print(err);
     }

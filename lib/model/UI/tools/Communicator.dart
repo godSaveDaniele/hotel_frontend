@@ -22,8 +22,9 @@ class Communicator {
 
   String nationalitySelected = "Select nationality";
   bool nationalityClassificationLoaded = false;
-  late Map<String, double> nationalityClassification;
+  late Map<String,Map<String, double>> nationalityClassification;
   bool sendingRequest = false;
+  late Map<String, double> classification;
 
 
   Future<void> setCountry(String country) async {
@@ -67,24 +68,28 @@ class Communicator {
 
   // Questo metodo serve a caricare le nazionalità dal backend nel momento in cui
   // il widget Function2 viene caricato. Una volta caricate rimangono in ram.
+  // Aggiunta: il metodo carica anche tutte le classificazioni di ogni nazionalità.
   Future<void> loadNationality() async {
     nationalityList = (await Model.sharedIstance.getAllNationality())!.map((e) => e.trim()).toList();
     nationalityList.sort();
+    nationalityClassification = (await Model.sharedIstance.getNationalityClass())!;
     nationalityLoaded = true;
     aggiornaStato2();
   }
 
-  Future<void> getNationalityClass(String nationality) async {
+  // Il seguente metodo non esegue piu' una chiamata http ma accede normalmente alla
+  // mappa nationalityClassification e restituisce la classificazione per la nationality passata.
+  void getNationalityClass(String nationality)  {
     sendingRequest = true;
     aggiornaStato2();
     nationalitySelected = nationality;
-    nationalityClassification = (await Model.sharedIstance.getNationalityClass(nationality))!;
-    if (nationalityClassification['0'] == null)
-      nationalityClassification['0'] = 0.0;
-    if (nationalityClassification['1'] == null)
-      nationalityClassification['1'] = 0.0;
-    if (nationalityClassification['2'] == null)
-      nationalityClassification['2'] = 0.0;
+    classification = nationalityClassification[nationality]!;
+    if (classification['0'] == null)
+      classification['0'] = 0.0;
+    if (classification['1'] == null)
+      classification['1'] = 0.0;
+    if (classification['2'] == null)
+      classification['2'] = 0.0;
     nationalityClassificationLoaded = true;
     sendingRequest = false;
     aggiornaStato2();
