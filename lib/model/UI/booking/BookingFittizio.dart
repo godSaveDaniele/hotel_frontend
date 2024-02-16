@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hotel_frontend/model/UI/booking/BarraDiRicercaBooking.dart';
 
 import '../../Model.dart';
-import '../toolsdaniele/BarraDiRicerca.dart';
 import 'HotelBox.dart';
 
 class BookingFittizio extends StatefulWidget {
@@ -13,7 +12,7 @@ class BookingFittizio extends StatefulWidget {
 }
 
 class _BookingFittizio extends State<BookingFittizio> {
-  GlobalKey<BarraDiRicercaState> childKey = GlobalKey<BarraDiRicercaState>();
+  GlobalKey<BarraDiRicercaBookingState> childKey = GlobalKey<BarraDiRicercaBookingState>();
   bool loading = true;
   late List<Coppia> dati;
   late List<String> campiSelezionati;
@@ -51,6 +50,7 @@ class _BookingFittizio extends State<BookingFittizio> {
 
   List<String> seleziona(List<Coppia> dati, List<String> campiSelezionati) {
     List<String> ris= [];
+
     for (String tag in campiSelezionati){
       List<String> hotel = estraiTopHotel(tag,dati);
       ris.addAll(hotel);

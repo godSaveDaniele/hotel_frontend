@@ -10,13 +10,12 @@ class HotelBox extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return
-      Container(
-          height:400,
-          width:250,
+    SizedBox(
+      child: Container(
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.black, // Colore del bordo
-              width: 2.0, // Spessore del bordo
+              width: 1.0, // Spessore del bordo
             ),
           ),
           margin:EdgeInsets.all(30) ,
@@ -26,29 +25,35 @@ class HotelBox extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: _dati.map(
-                          (string) => Container(
-                          padding: EdgeInsets.all(8.0),
-                          margin: EdgeInsets.symmetric(vertical: 4.0),
-                          decoration: BoxDecoration(
-                            color: Colors.red[200],
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child:
-                          Row(
-                            children:[
-                              Text(
-                                modifyHotelString(string),
-                                style: TextStyle(fontSize: 16.0),
+                            (string) => SizedBox(
+                          child: Container(
+                              padding: EdgeInsets.all(8.0),
+                              margin: EdgeInsets.symmetric(vertical: 4.0),
+                              decoration: BoxDecoration(
+                                color: Colors.red[200],
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                            ],
-                          )
-                      ),
+                              child:
+                              Row(
+                                children:[
+                                  Text(
+                                    modifyHotelString(string),
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              )
+                          ),
+                        )
+
+
                     ).toList(),
                   )
               )
           )
 
-      );
+      )
+    );
+
   }
 
   String modifyHotelString(String string) {

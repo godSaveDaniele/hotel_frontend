@@ -21,6 +21,15 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
     //_getTags();
     return Row(
         children: [
+          SizedBox(
+            height: 10,
+            width: 20,
+          ),
+
+          SizedBox(
+              height: 30,
+              width: 300,
+              child:
               DropdownButton<String>(
                 value:null,
                 onChanged: (String? newValue) {
@@ -37,8 +46,14 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
                   );
                 }).toList(),
               ),
+          ),
 
-          SingleChildScrollView(
+          SizedBox(
+            height: 10,
+            width: 30,
+          ),
+
+            SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: _campiSelezionati
@@ -76,16 +91,14 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
                         ).toList(),
                       )
                   )
-
-
-
-
         ],
 
     );
   }
 
   List<String> getCampiSelezionati(){
+    print("In getCampiSelezionati");
+    print(_campiSelezionati.toString());
     return _campiSelezionati;
   }
 
