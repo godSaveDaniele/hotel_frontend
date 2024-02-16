@@ -37,13 +37,11 @@ class _AnalisiState extends State<AnalisiNazionalitaScore> {
       tmp=[];
     }
     campiSelezionati=tmp;
-    print(dati);
-    print(campiSelezionati);
     Map<String, double> datiIstogramma = seleziona(dati, campiSelezionati);
     print(datiIstogramma);
     return Row(
         children:[
-          BarraDiRicerca(key: childKey, aggiorna: aggiorna,),
+          BarraDiRicerca(key: childKey, aggiorna: aggiorna),
           SizedBox(width:30),
           Istogramma(datiIstogramma)
         ]

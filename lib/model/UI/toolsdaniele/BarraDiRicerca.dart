@@ -57,50 +57,51 @@ class BarraDiRicercaState extends State<BarraDiRicerca> {
               ),
               margin:EdgeInsets.all(30) ,
               child:
-                Scrollbar(
-                  child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: _campiSelezionati
-                            .map(
-                              (string) => Container(
-                              padding: EdgeInsets.all(8.0),
-                              margin: EdgeInsets.symmetric(vertical: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.lime[200],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child:
-                              Row(
-                                children:[
-                                  Text(
-                                    string,
-                                    style: TextStyle(fontSize: 16.0),
+                  Scaffold(
+                    appBar: AppBar(title: Text("Nazionalità selezionate")),
+                    body: Scrollbar(
+                      child: SingleChildScrollView(
+                          child: Column(
+                            children: _campiSelezionati
+                                .map(
+                                  (string) => Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  margin: EdgeInsets.symmetric(vertical: 4.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  SizedBox( width:20),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _campiSelezionati.remove(string);
-                                        _campiMenuTendina.add(string);
-                                        widget.aggiorna();
-                                      });
-                                    },
-                                    child:
-                                    SizedBox(
-                                        width: 30,
+                                  child:
+                                  Row(
+                                    children:[
+                                      Text(
+                                        string,
+                                        style: TextStyle(fontSize: 16.0),
+                                      ),
+                                      SizedBox( width:20),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _campiSelezionati.remove(string);
+                                            _campiMenuTendina.add(string);
+                                            widget.aggiorna();
+                                          });
+                                        },
                                         child:
-                                        Icon(Icons.close)
-                                    ),
-                                  ),
-                                ],
-                              )
-                          ),
-                        ).toList(),
+                                        SizedBox(
+                                            width: 30,
+                                            child:
+                                            Icon(Icons.close)
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                            ).toList(),
+                          )
                       )
+                    )
                   )
-              )
-
             )
           ],
         ),
