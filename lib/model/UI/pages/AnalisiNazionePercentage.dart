@@ -73,7 +73,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
 
   Widget Titolo(){
     return Padding(
-      padding: EdgeInsets.only(bottom:10, top:10),
+      padding: EdgeInsets.only(bottom:60, top:60),
       child:Column(
         children: [
           Text(
@@ -101,8 +101,8 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
     TransformationController controller = TransformationController();
     controller.value =
     Matrix4.identity() // Imposta la trasformazione iniziale a identità
-      ..translate(-800, -80)
-      ..scale(4);
+      ..translate(-1000, -150)
+      ..scale(5);
     return Center(
         child: Container(
             width: 500, // Larghezza desiderata dell'immagine ritagliata
@@ -143,10 +143,13 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
   }
 
   Widget Grafico(String nazione){
-    return SizedBox(
-      width:190,
-      height:180,
-      child: graficiInseriti[nazione]!?PieChartWidget(nazione):SizedBox()
+    return Padding(
+        padding: EdgeInsets.only(bottom:35, top:35),
+        child: SizedBox(
+          width:190,
+          height:180,
+          child: graficiInseriti[nazione]!?PieChartWidget(nazione):SizedBox()
+        )
     );
   }
 
@@ -156,12 +159,14 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
           SizedBox(
             height:35,
             width:190,
-            child: Text(nazione,
-              style: const TextStyle(
-                fontSize: 20, // Modifica la dimensione del carattere
-                fontWeight: FontWeight.bold, // Rende il testo in grassetto
-                color: Colors.blue, // Cambia il colore del testo
-                letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+            child: Center(
+              child: Text(nazione,
+                style: const TextStyle(
+                  fontSize: 20, // Modifica la dimensione del carattere
+                  fontWeight: FontWeight.bold, // Rende il testo in grassetto
+                  color: Colors.blue, // Cambia il colore del testo
+                  letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+                ),
               ),
             ),
           ),
