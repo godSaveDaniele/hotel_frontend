@@ -17,6 +17,7 @@ class _BookingFittizio extends State<BookingFittizio> {
   late List<Coppia> dati;
   late List<String> campiSelezionati;
   late List<String> campiMenuTendina;
+  late List<List<dynamic>> coppieTag;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +41,10 @@ class _BookingFittizio extends State<BookingFittizio> {
     }
     campiSelezionati=tmp;
     List<String> datiHotelBox = seleziona(dati, campiSelezionati);
+    List<String> tagSuggeriti = selezionaTag(campiSelezionati);
     return Row(
         children:[
-          BarraDiRicercaBooking(key: childKey, aggiorna: aggiorna, campiMenuTendina: campiMenuTendina),
+          BarraDiRicercaBooking(key: childKey, aggiorna: aggiorna, campiMenuTendina: campiMenuTendina, tagSuggeriti: tagSuggeriti),
           HotelBox(datiHotelBox)
         ]
     );
@@ -58,6 +60,21 @@ class _BookingFittizio extends State<BookingFittizio> {
     return ris.toSet().toList();
   }
 
+  List<String> selezionaTag(List<String> campiSelezionati){
+    List<String> ris=[];
+    for (String tag in campiSelezionati){
+        ris.insert(0, tagAssociato(tag));
+    }
+    return ris;
+  }
+  String tagAssociato(String tag){
+    for(int i=0; i<coppieTag.length; i++){
+      if (coppieTag[i][0].toString()==tag) return coppieTag[i][1].toString();
+      if (coppieTag[i][1].toString()==tag) return coppieTag[i][0].toString();
+    }
+    return "Nessun suggerimento";
+  }
+
   List<String> estraiTopHotel(String tag, List<Coppia> dati) {
     List<String> hotels = [];
     for(Coppia coppia in dati){
@@ -70,6 +87,7 @@ class _BookingFittizio extends State<BookingFittizio> {
   Future<void> _getData() async {
     dati= (await Model.sharedInstance.getHotelTags())!;
     campiMenuTendina= (await Model.sharedInstance.getAllTags())!;
+    coppieTag=(await Model.sharedInstance.getCoppieTag())!;
     setState(() {
       loading = false;
     });

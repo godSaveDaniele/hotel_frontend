@@ -59,6 +59,21 @@ class Model {
     return null;
   }
 
+  Future<List<List<dynamic>>?> getCoppieTag() async{
+    try{
+      print("ciaooooooooooooo");
+      String bodyRisposta= await _restManager.makeGetRequest(
+          Constants.SERVER_ADDRESS, Constants.REQUEST_COPPIE_TAG);
+      print(bodyRisposta);
+      List<List<dynamic>> output=  List<List<dynamic>>.from(json.decode(bodyRisposta));
+      print(output);
+      return output;
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
   Future<List<String>?> getAllNationality2() async {
     try{
       String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "GetAllNationality");

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class BarraDiRicercaBooking extends StatefulWidget {
   final VoidCallback aggiorna;
   final List<String> campiMenuTendina;
-  BarraDiRicercaBooking({Key? key, required this.aggiorna, required this.campiMenuTendina}) : super(key: key);
+  final List<String> tagSuggeriti;
+  BarraDiRicercaBooking({Key? key, required this.aggiorna, required this.campiMenuTendina, required this.tagSuggeriti}) : super(key: key);
 
   @override
   BarraDiRicercaBookingState createState() => BarraDiRicercaBookingState();
@@ -18,7 +19,6 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
 
   @override
   Widget build(BuildContext context) {
-    //_getTags();
     return Row(
         children: [
           SizedBox(
@@ -52,45 +52,86 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
             height: 10,
             width: 30,
           ),
-
-            SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: _campiSelezionati
-                            .map(
-                              (string) => Container(
-                              padding: EdgeInsets.all(8.0),
-                              margin: EdgeInsets.symmetric(vertical: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.green[200],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
+          SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: _campiSelezionati
+                  .map(
+                    (string) => Container(
+                    padding: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.symmetric(vertical: 4.0),
+                    decoration: BoxDecoration(
+                      color: Colors.green[200],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child:
+                    Row(
+                      children:[
+                        Text(
+                          string,
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _campiSelezionati.remove(string);
+                              widget.aggiorna();
+                            });
+                          },
+                          child:
+                          SizedBox(
                               child:
-                              Row(
-                                children:[
-                                  Text(
-                                    string,
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _campiSelezionati.remove(string);
-                                        widget.aggiorna();
-                                      });
-                                    },
-                                    child:
-                                    SizedBox(
-                                        child:
-                                        Icon(Icons.close)
-                                    ),
-                                  ),
-                                ],
-                              )
+                              Icon(Icons.close)
                           ),
-                        ).toList(),
+                        ),
+                      ],
+                    )
+                  ),
+              ).toList(),
+            )
+          ),
+          SizedBox(width: 20),
+          SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: widget.tagSuggeriti
+                    .map(
+                      (string) => Container(
+                      padding: EdgeInsets.all(8.0),
+                      margin: EdgeInsets.symmetric(vertical: 4.0),
+                      decoration: BoxDecoration(
+                        color: Colors.yellow[200],
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child:
+                      Row(
+                        children:[
+                          Text(
+                            string,
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _campiSelezionati.add(string);
+                                widget.tagSuggeriti.remove(string);
+                                widget.aggiorna();
+                              });
+                            },
+                            child:
+                            SizedBox(
+                                child:
+                                Icon(Icons.add)
+                            ),
+                          ),
+                        ],
                       )
-                  )
+                  ),
+                ).toList(),
+              )
+          ),
+
+
         ],
     );
   }
