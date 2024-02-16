@@ -92,13 +92,10 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
                       )
                   )
         ],
-
     );
   }
 
   List<String> getCampiSelezionati(){
-    print("In getCampiSelezionati");
-    print(_campiSelezionati.toString());
     return _campiSelezionati;
   }
 

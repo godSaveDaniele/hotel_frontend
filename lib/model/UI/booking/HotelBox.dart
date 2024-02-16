@@ -21,7 +21,11 @@ class HotelBox extends StatelessWidget {
           margin:EdgeInsets.all(30) ,
           child:
           Scrollbar(
+              thumbVisibility: true,
               child: SingleChildScrollView(
+                  controller: new ScrollController(
+                    keepScrollOffset: true
+                  ), // Necessario altrimenti non si puo' afferrare la barra
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: _dati.map(

@@ -55,13 +55,13 @@ class _BookingFittizio extends State<BookingFittizio> {
       List<String> hotel = estraiTopHotel(tag,dati);
       ris.addAll(hotel);
     }
-    return ris;
+    return ris.toSet().toList();
   }
 
   List<String> estraiTopHotel(String tag, List<Coppia> dati) {
     List<String> hotels = [];
     for(Coppia coppia in dati){
-      if(coppia.item2.contains(tag))
+      if(coppia.item2.elementAt(0) == tag || coppia.item2.elementAt(1) == tag || coppia.item2.elementAt(2) == tag)
         hotels.add(coppia.item1);
     }
     return hotels;
