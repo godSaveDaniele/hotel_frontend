@@ -15,10 +15,11 @@ class BarraDiRicercaState extends State<BarraDiRicerca> {
 
   List<String> _campiMenuTendina =[];
   List<String> _campiSelezionati=[];
+  bool nazionalitaCaricate=false;
 
   @override
   Widget build(BuildContext context) {
-    _getNazionalita();
+    if (!nazionalitaCaricate){ _getNazionalita(); nazionalitaCaricate=true;}
     return SizedBox(
         height: 500,
         width:650,
