@@ -40,7 +40,6 @@ class CountrySearchDelegate extends SearchDelegate<String> {
     'Germany',
     'Ireland',
     'United States of America',
-    'France',
     'Italy',
     'Spain',
     // Add more countries as needed
@@ -73,9 +72,14 @@ class CountrySearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     // Show results based on the query
-    final List<String> filteredCountries = countries
+    List<String> filteredCountries = [];
+    if (query != "")
+      filteredCountries.add(query);
+    filteredCountries.addAll(countries
         .where((country) => country.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+        .toList());
+
+
     return ListView.builder(
       itemCount: filteredCountries.length,
       itemBuilder: (BuildContext context, int index) {
