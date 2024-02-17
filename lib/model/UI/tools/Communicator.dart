@@ -20,7 +20,7 @@ class Communicator {
   bool nationalityLoaded = false;
   late List<String> nationalityList;
 
-  String nationalitySelected = "Select nationality";
+  String nationalitySelected = "Seleziona una nazione";
   bool nationalityClassificationLoaded = false;
   late Map<String,Map<String, double>> nationalityClassification;
   bool sendingRequest = false;
@@ -31,14 +31,17 @@ class Communicator {
     isCountry = true;
     isMap = false;
     aggiornaStato();
-    Map<String, List<dynamic>>? map = await Model.sharedInstance.getNationalityNegWords(country);
-
-    List<dynamic>? wordWithFreq = map?[" "+country+" "];
+    List<dynamic>? wordWithFreq = await Model.sharedInstance.getNationalityNegWords(country == ""? "a" :country);
+    if (wordWithFreq == null) {
+      isCountry = false;
+      aggiornaStato();
+      return;
+    }
 
     // Conversione di List<dynamic>? in una List<Map<dynamic, dynamic>> dal momento che
     // WorldCloud si aspetta di ricevere una List<Map<dynamic, dynamic>>
     List<Map<dynamic, dynamic>> formattedListMap = [];
-    for (var item in wordWithFreq!) {
+    for (var item in wordWithFreq) {
       if (item is List && item[0] is String && item[1] is num) {
         formattedListMap.add({'word':item[0], 'value':item[1]});
       }

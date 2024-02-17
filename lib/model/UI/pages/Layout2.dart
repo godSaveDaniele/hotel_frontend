@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_frontend/model/UI/booking/BookingFittizio.dart';
 import '../analisys/ClassificazioneNazionalità.dart';
 import 'AnalisiNazionalitaScore.dart';
 import 'AnalisiNazionePercentage.dart';
@@ -52,7 +53,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                       },
                     ),
                     ListTile(
-                        leading: Icon(Icons.pie_chart),
+                        leading: Icon(Icons.score),
                         title: Text("Nazioni europee con migliori hotel"),
                         onTap: () {
                           setState(() {
@@ -87,7 +88,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                     title: Text('Booking'),
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(Icons.bar_chart),
+                        leading: Icon(Icons.hotel),
                         title: Text("Booking fittizio"),
                         onTap: () {
                           setState(() {
@@ -111,6 +112,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
       case(1):return AnalisiNazionePercentage();
       case(2):return Function1();
       case(3):return Function2();
+      case(4):return BookingFittizio();
     }
   }
 }

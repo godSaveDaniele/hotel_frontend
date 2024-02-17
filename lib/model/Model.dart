@@ -35,11 +35,11 @@ class Model {
   }
 
 
-  Future<Map<String, List>?> getNationalityNegWords(String nationality) async {
+  Future<List<dynamic>?> getNationalityNegWords(String nationality) async {
     try{
       String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function1/"+nationality);
       //print(json.decode(result));
-      return Map<String, List<dynamic>>.from(json.decode(result));
+      return List<dynamic>.from(json.decode(result));
     }catch(err){
       print(err);
     }
@@ -51,6 +51,20 @@ class Model {
       String bodyRisposta= await _restManager.makeGetRequest(
           Constants.SERVER_ADDRESS, Constants.REQUEST_NATION_PERCENTAGE);
       Map<String, List<dynamic>> output=  Map<String, List<dynamic>>.from(json.decode(bodyRisposta));
+      print(output);
+      return output;
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
+  Future<List<List<dynamic>>?> getCoppieTag() async{
+    try{
+      String bodyRisposta= await _restManager.makeGetRequest(
+          Constants.SERVER_ADDRESS, Constants.REQUEST_COPPIE_TAG);
+      print(bodyRisposta);
+      List<List<dynamic>> output=  List<List<dynamic>>.from(json.decode(bodyRisposta));
       print(output);
       return output;
     }catch(err){
@@ -99,5 +113,48 @@ class Model {
     return null;
   }
 
+  Future<List<String>?> getAllTags() async {
+    try{
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "GetAllTags");
+      //print(json.decode(result));
+      return List<String>.from(json.decode(result));
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
 
+  Future<List<Coppia>?> getHotelTags() async {
+    try{
+      String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function3");
+      List<dynamic> tmp = List<dynamic>.from(json.decode(result));
+
+      List<Coppia> finalResult = [];
+
+      for (var data in tmp) {
+        String address = data[0];
+        List<String> details = List<String>.from(data[1]);
+        finalResult.add(Coppia(address, details));
+      }
+
+      return finalResult;
+    }catch(err){
+      print(err);
+    }
+    return null;
+  }
+
+}
+
+
+class Coppia {
+  final String item1;
+  final List<String> item2;
+
+  Coppia(this.item1, this.item2);
+
+  @override
+  String toString() {
+    return '($item1, $item2)';
+  }
 }

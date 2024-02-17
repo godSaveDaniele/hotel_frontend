@@ -24,7 +24,7 @@ class BarraDiRicerca extends StatelessWidget{
               ? Communicator.sharedInstance.isMap
                   ? WordCloud(title: "Beautiful Presentation")
                   : CircularProgressIndicator()
-              : Text('Click on search icon to select a country')
+              : Text('Clicca sul pulsante di ricerca per selezionare una nazione')
       ),
     );
   }
@@ -40,7 +40,6 @@ class CountrySearchDelegate extends SearchDelegate<String> {
     'Germany',
     'Ireland',
     'United States of America',
-    'France',
     'Italy',
     'Spain',
     // Add more countries as needed
@@ -73,9 +72,14 @@ class CountrySearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     // Show results based on the query
-    final List<String> filteredCountries = countries
+    List<String> filteredCountries = [];
+    if (query != "")
+      filteredCountries.add(query);
+    filteredCountries.addAll(countries
         .where((country) => country.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+        .toList());
+
+
     return ListView.builder(
       itemCount: filteredCountries.length,
       itemBuilder: (BuildContext context, int index) {
@@ -95,7 +99,7 @@ class CountrySearchDelegate extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // Show suggestions based on the query (not implemented here)
     return Center(
-      child: Text('No suggestions yet'),
+      child: Text('Nessun suggerimento da mostrare'),
     );
   }
 }
