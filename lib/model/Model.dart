@@ -35,11 +35,11 @@ class Model {
   }
 
 
-  Future<Map<String, List>?> getNationalityNegWords(String nationality) async {
+  Future<List<dynamic>?> getNationalityNegWords(String nationality) async {
     try{
       String result = await _restManager.makeGetRequest(Constants.SERVER_ADDRESS, "Function1/"+nationality);
       //print(json.decode(result));
-      return Map<String, List<dynamic>>.from(json.decode(result));
+      return List<dynamic>.from(json.decode(result));
     }catch(err){
       print(err);
     }
