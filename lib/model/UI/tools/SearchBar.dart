@@ -9,7 +9,7 @@ class BarraDiRicerca extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('Analisi dei commenti negativi in base alla nazionalità'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),

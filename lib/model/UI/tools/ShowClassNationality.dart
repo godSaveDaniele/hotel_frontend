@@ -7,6 +7,9 @@ class Analisi2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Communicator.sharedInstance.nationalityLoaded
       ? Scaffold(
+      appBar: AppBar(
+        title: Text('Analisi delle categorie di significatività dei reviews'),
+      ),
         body: Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
@@ -49,7 +52,7 @@ class PieChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1.5,
       child:
         Stack(
           alignment: Alignment.topCenter,
@@ -57,13 +60,17 @@ class PieChartWidget extends StatelessWidget {
 
                   Positioned(
                       left: 15,
+                      top: 10,
                       child: Text(Communicator.sharedInstance.nationalitySelected,
                         style: TextStyle(
-                        fontSize: 20, // Modifica la dimensione del carattere
-                        fontWeight: FontWeight.bold, // Rende il testo in grassetto
-                        color: Colors.blue, // Cambia il colore del testo
-                        letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
-                      ),)
+                          fontSize: 25, // dimensione del testo
+                          fontWeight: FontWeight.bold, // grassetto
+                          color: Colors.blue, // colore del testo
+                          fontStyle: FontStyle.italic, // stile corsivo
+                          letterSpacing: 1.2, // spaziatura tra le lettere
+                          decorationStyle: TextDecorationStyle.double, // stile della sottolineatura
+                        ),
+                      )
                   ),
 
                   Communicator.sharedInstance.nationalityClassificationLoaded
@@ -84,15 +91,15 @@ class PieChartWidget extends StatelessWidget {
                           ),
                            Positioned(
                              top: 300,
-                               child: _buildLegendItem(Colors.blue, 'Classe 1')
+                               child: _buildLegendItem(Colors.blue, 'Significatività delle recensioni media')
                            ),
                           Positioned(
                               top: 330,
-                              child: _buildLegendItem(Colors.green, 'Classe 2')
+                              child: _buildLegendItem(Colors.green, 'Significatività delle recensioni alta')
                           ),
                           Positioned(
                               top: 360,
-                              child: _buildLegendItem(Colors.red, 'Classe 3')
+                              child: _buildLegendItem(Colors.red, 'Significatività delle recensioni bassa')
                           ),
 
                         ],
