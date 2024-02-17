@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HotelBox extends StatelessWidget {
@@ -9,53 +8,54 @@ class HotelBox extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    return
-    SizedBox(
-      child: Container(
+    return Container(
+          height:400,
+          width:350,
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.black, // Colore del bordo
-              width: 1.0, // Spessore del bordo
+              width: 2.0, // Spessore del bordo
             ),
           ),
-          margin:EdgeInsets.all(30) ,
+          margin:EdgeInsets.all(15) ,
           child:
-          Scrollbar(
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                  controller: new ScrollController(
-                    keepScrollOffset: true
-                  ), // Necessario altrimenti non si puo' afferrare la barra
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: _dati.map(
-                            (string) => SizedBox(
-                          child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              margin: EdgeInsets.symmetric(vertical: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.red[200],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child:
-                              Row(
-                                children:[
-                                  Text(
-                                    modifyHotelString(string),
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                ],
-                              )
-                          ),
-                        )
+            Scaffold(
+              appBar: AppBar(title: Text("Hotel consigliati per i tag scelti")),
+              body :Scrollbar(
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                    controller: new ScrollController(
+                      keepScrollOffset: true
+                    ), // Necessario altrimenti non si puo' afferrare la barra
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: _dati.map(
+                              (string) => SizedBox(
+                            child: Container(
+                                padding: EdgeInsets.all(8.0),
+                                margin: EdgeInsets.symmetric(vertical: 4.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue[50],
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child:
+                                Row(
+                                  children:[
+                                    Text(
+                                      modifyHotelString(string),
+                                      style: TextStyle(fontSize: 16.0),
+                                    ),
+                                  ],
+                                )
+                            ),
+                          )
 
 
-                    ).toList(),
-                  )
-              )
-          )
-
-      )
+                      ).toList(),
+                    )
+                )
+            )
+        )
     );
 
   }
@@ -67,7 +67,7 @@ class HotelBox extends StatelessWidget {
       String primaParte = parole.sublist(0, 3).join(" ");
       String secondaParte = parole.sublist(parole.length - 2).join(" ");
 
-      return '$primaParte, $secondaParte';
+      return '$primaParte,\n $secondaParte';
     } else { return ''; }
   }
 }

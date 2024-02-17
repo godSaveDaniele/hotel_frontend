@@ -53,7 +53,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                       },
                     ),
                     ListTile(
-                        leading: Icon(Icons.pie_chart),
+                        leading: Icon(Icons.score),
                         title: Text("Nazioni europee con migliori hotel"),
                         onTap: () {
                           setState(() {
@@ -88,7 +88,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                     title: Text('Booking'),
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(Icons.bar_chart),
+                        leading: Icon(Icons.hotel),
                         title: Text("Booking fittizio"),
                         onTap: () {
                           setState(() {

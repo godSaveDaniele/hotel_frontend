@@ -61,7 +61,6 @@ class Model {
 
   Future<List<List<dynamic>>?> getCoppieTag() async{
     try{
-      print("ciaooooooooooooo");
       String bodyRisposta= await _restManager.makeGetRequest(
           Constants.SERVER_ADDRESS, Constants.REQUEST_COPPIE_TAG);
       print(bodyRisposta);
