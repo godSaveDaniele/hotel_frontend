@@ -24,7 +24,7 @@ class BarraDiRicerca extends StatelessWidget{
               ? Communicator.sharedInstance.isMap
                   ? WordCloud(title: "Beautiful Presentation")
                   : CircularProgressIndicator()
-              : Text('Click on search icon to select a country')
+              : Text('Clicca sul pulsante di ricerca per selezionare una nazione')
       ),
     );
   }
@@ -99,7 +99,7 @@ class CountrySearchDelegate extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // Show suggestions based on the query (not implemented here)
     return Center(
-      child: Text('No suggestions yet'),
+      child: Text('Nessun suggerimento da mostrare'),
     );
   }
 }

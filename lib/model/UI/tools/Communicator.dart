@@ -20,7 +20,7 @@ class Communicator {
   bool nationalityLoaded = false;
   late List<String> nationalityList;
 
-  String nationalitySelected = "Select nationality";
+  String nationalitySelected = "Seleziona una nazione";
   bool nationalityClassificationLoaded = false;
   late Map<String,Map<String, double>> nationalityClassification;
   bool sendingRequest = false;
