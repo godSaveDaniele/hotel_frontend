@@ -75,7 +75,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
                     ),
                     ListTile(
                         leading: Icon(Icons.pie_chart),
-                        title: Text("Classificazione della significatività per nazionalità"),
+                        title: Text("Classificazione della significatività delle recensioni per nazionalità"),
                         onTap: () {
                           setState(() {
                             paginaCorrente = 3;
