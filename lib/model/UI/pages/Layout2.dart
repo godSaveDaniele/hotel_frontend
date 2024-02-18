@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_frontend/model/UI/booking/BookingFittizio.dart';
+import 'package:hotel_frontend/model/UI/pages/Welcome.dart';
 import '../analisys/ClassificazioneNazionalità.dart';
 import 'AnalisiNazionalitaScore.dart';
 import 'AnalisiNazionePercentage.dart';
@@ -20,7 +21,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Analisi recensioni hotel di lusso europei")),
+      appBar: AppBar(title: Text("")),
       body: Center(
         child: _visualizzaPagina(),
       ),
@@ -108,6 +109,7 @@ class _Layout2State extends State<Layout2> with SingleTickerProviderStateMixin {
 
   _visualizzaPagina(){
     switch(paginaCorrente){
+      case(-1):return Welcome();
       case(0):return AnalisiNazionalitaScore();
       case(1):return AnalisiNazionePercentage();
       case(2):return Function1();

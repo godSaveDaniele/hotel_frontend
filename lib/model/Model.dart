@@ -26,7 +26,9 @@ class Model {
     try{
       String bodyRisposta= await _restManager.makeGetRequest(
           Constants.SERVER_ADDRESS, Constants.REQUEST_NATIONALITY);
+      print("getAllNationality");
       List<String> output=  List<String>.from(json.decode(bodyRisposta));
+      print("Not printed");
       return output;
     }catch(err){
       print(err);
