@@ -3,7 +3,16 @@ import 'package:flutter/material.dart';
 class HotelBox extends StatelessWidget {
   late final List<String> _dati;
 
+
+  late final bool format;
+
   HotelBox(List<String> datiHotelBox){
+    if (datiHotelBox.isEmpty) {
+      datiHotelBox.add("Nessun hotel da suggerire \nper il tag selezionato");
+      format = false;
+    } else {
+      format = true;
+    }
     _dati = datiHotelBox;
   }
 
@@ -61,13 +70,17 @@ class HotelBox extends StatelessWidget {
   }
 
   String modifyHotelString(String string) {
-    List<String> parole  = string.split(" ");
-    if (parole.length >= 5) {
-      // Prendo le prime tre parole e le ultime due parole
-      String primaParte = parole.sublist(0, 3).join(" ");
-      String secondaParte = parole.sublist(parole.length - 2).join(" ");
-
-      return '$primaParte,\n $secondaParte';
-    } else { return ''; }
+    if (format) {
+      List<String> parole = string.split(" ");
+      if (parole.length >= 5) {
+        // Prendo le prime tre parole e le ultime due parole
+        String primaParte = parole.sublist(0, 3).join(" ");
+        String secondaParte = parole.sublist(parole.length - 2).join(" ");
+        return '$primaParte,\n $secondaParte';
+      } else {
+        return '';
+      }
+    }
+    return string;
   }
 }
