@@ -73,7 +73,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
 
   Widget Titolo(){
     return Padding(
-      padding: EdgeInsets.only(bottom:10, top:10),
+      padding: EdgeInsets.only(bottom:60, top:60),
       child:Column(
         children: [
           Text(
@@ -101,8 +101,8 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
     TransformationController controller = TransformationController();
     controller.value =
     Matrix4.identity() // Imposta la trasformazione iniziale a identità
-      ..translate(-800, -80)
-      ..scale(4);
+      ..translate(-1000, -150)
+      ..scale(5);
     return Center(
         child: Container(
             width: 500, // Larghezza desiderata dell'immagine ritagliata
@@ -143,10 +143,13 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
   }
 
   Widget Grafico(String nazione){
-    return SizedBox(
-      width:190,
-      height:180,
-      child: graficiInseriti[nazione]!?PieChartWidget(nazione):SizedBox()
+    return Padding(
+        padding: EdgeInsets.only(bottom:35, top:35),
+        child: SizedBox(
+          width:190,
+          height:180,
+          child: graficiInseriti[nazione]!?PieChartWidget(nazione):SizedBox()
+        )
     );
   }
 
@@ -156,12 +159,14 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
           SizedBox(
             height:35,
             width:190,
-            child: Text(nazione,
-              style: const TextStyle(
-                fontSize: 20, // Modifica la dimensione del carattere
-                fontWeight: FontWeight.bold, // Rende il testo in grassetto
-                color: Colors.blue, // Cambia il colore del testo
-                letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+            child: Center(
+              child: Text(nazione,
+                style: const TextStyle(
+                  fontSize: 20, // Modifica la dimensione del carattere
+                  fontWeight: FontWeight.bold, // Rende il testo in grassetto
+                  color: Colors.blue, // Cambia il colore del testo
+                  letterSpacing: 2, // Modifica lo spaziamento tra i caratteri
+                ),
               ),
             ),
           ),
@@ -191,15 +196,15 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
         children: [
           Positioned(
               top: 20,
-              child: _buildLegendItem(Colors.blue, "Hotel scarsi")
+              child: _buildLegendItem((Colors.deepPurple[50]), "Hotel scarsi")
           ),
           Positioned(
               top: 50,
-              child: _buildLegendItem(Colors.green, "Hotel intermedi")
+              child: _buildLegendItem((Colors.deepPurple[200]), "Hotel intermedi")
           ),
           Positioned(
               top: 80,
-              child: _buildLegendItem(Colors.red, "Hotel eccellenti")
+              child: _buildLegendItem((Colors.deepPurple[500]), "Hotel eccellenti")
           ),
         ]
       )
@@ -214,7 +219,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: Colors.blue,
+            color: Colors.deepPurple[50],
             value: dati[nazione]?[i].toDouble(),
             title: dati[nazione]![i].toStringAsFixed(2) +"%",
             titleStyle: TextStyle (color: Colors.black,fontWeight: FontWeight.bold, fontSize: 15),
@@ -222,7 +227,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
             );
         case 1:
           return PieChartSectionData(
-            color: Colors.green,
+            color: Colors.deepPurple[200],
             value: dati[nazione]?[i].toDouble(),
             title: dati[nazione]![i].toStringAsFixed(2) +"%",
             radius: radius,
@@ -230,10 +235,10 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
           );
         case 2:
           return PieChartSectionData(
-            color: Colors.red,
+            color: Colors.deepPurple[500],
             value: dati[nazione]?[i].toDouble(),
             title: dati[nazione]![i].toStringAsFixed(2) +"%",
-            titleStyle: TextStyle (color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+            titleStyle: TextStyle (color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
           );
         default:
           throw Error();
@@ -242,7 +247,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
 
   }
 
-    Widget _buildLegendItem(Color color, String label) {
+    Widget _buildLegendItem(Color? color, String label) {
     return Row(
       children: [
         Container(
@@ -292,7 +297,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
 
 // Funzione che restituisce il value per la colorazione di una certa nazione
   double  getValueFromNation(String nation){
-    return dati[nation]?.last.toDouble()/dati[nation]?.first.toDouble();
+    return dati[nation]?.last.toDouble()-dati[nation]?.first.toDouble();
   }
 
 
@@ -303,7 +308,7 @@ class _AnalisiState extends State<AnalisiNazionePercentage> {
     Color startColor = Colors.white;
     Color endColor = Colors.deepPurple;
 
-    double percent = (value  - minValue+0.3) / (maxValue - minValue +0.3);
+    double percent = (value  - minValue +7) / (maxValue - minValue + 7);
     Color? interpolatedColor = Color.lerp(startColor, endColor, percent);
     return interpolatedColor;
   }

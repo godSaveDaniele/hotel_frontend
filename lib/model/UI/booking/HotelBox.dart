@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class HotelBox extends StatelessWidget {
   late final List<String> _dati;
+
+
   late final bool format;
 
   HotelBox(List<String> datiHotelBox){
@@ -36,8 +38,7 @@ class HotelBox extends StatelessWidget {
                     ), // Necessario altrimenti non si puo' afferrare la barra
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children:
-                      _dati.map(
+                      children: _dati.map(
                               (string) => SizedBox(
                             child: Container(
                                 padding: EdgeInsets.all(8.0),

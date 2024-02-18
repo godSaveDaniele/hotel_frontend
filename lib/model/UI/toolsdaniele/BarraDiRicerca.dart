@@ -14,34 +14,42 @@ class BarraDiRicercaState extends State<BarraDiRicerca> {
 
   List<String> _campiMenuTendina =[];
   List<String> _campiSelezionati=[];
+  bool nazionalitaCaricate=false;
 
   @override
   Widget build(BuildContext context) {
-    _getNazionalita();
+    if (!nazionalitaCaricate){ _getNazionalita(); nazionalitaCaricate=true;}
     return SizedBox(
         height: 500,
-        width:650,
+        width:700,
         child: Row(
           children: [
             Row(
               children: [
                 SizedBox(width: 10.0),
-                DropdownButton<String>(
-                  value:null,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _campiSelezionati.add(newValue!);
-                      _campiMenuTendina.remove(newValue);
-                      widget.aggiorna();
-                    });
-                  },
-                  items: _campiMenuTendina.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Scegli le nazionalità da confrontare", style: TextStyle( fontWeight: FontWeight.bold, fontSize: 20, color: Colors.blue )),
+                    SizedBox(height: 20),
+                    DropdownButton<String>(
+                      value:null,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _campiSelezionati.add(newValue!);
+                          _campiMenuTendina.remove(newValue);
+                          widget.aggiorna();
+                        });
+                      },
+                      items: _campiMenuTendina.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ]
+                )
               ],
             ),
             SizedBox(width: 20.0),
@@ -56,50 +64,51 @@ class BarraDiRicercaState extends State<BarraDiRicerca> {
               ),
               margin:EdgeInsets.all(30) ,
               child:
-                Scrollbar(
-                  child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: _campiSelezionati
-                            .map(
-                              (string) => Container(
-                              padding: EdgeInsets.all(8.0),
-                              margin: EdgeInsets.symmetric(vertical: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.lime[200],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child:
-                              Row(
-                                children:[
-                                  Text(
-                                    string,
-                                    style: TextStyle(fontSize: 16.0),
+                  Scaffold(
+                    appBar: AppBar(title: Text("Nazionalità selezionate")),
+                    body: Scrollbar(
+                      child: SingleChildScrollView(
+                          child: Column(
+                            children: _campiSelezionati
+                                .map(
+                                  (string) => Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  margin: EdgeInsets.symmetric(vertical: 4.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  SizedBox( width:20),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _campiSelezionati.remove(string);
-                                        _campiMenuTendina.add(string);
-                                        widget.aggiorna();
-                                      });
-                                    },
-                                    child:
-                                    SizedBox(
-                                        width: 30,
+                                  child:
+                                  Row(
+                                    children:[
+                                      Text(
+                                        string,
+                                        style: TextStyle(fontSize: 16.0),
+                                      ),
+                                      SizedBox( width:20),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _campiSelezionati.remove(string);
+                                            _campiMenuTendina.add(string);
+                                            widget.aggiorna();
+                                          });
+                                        },
                                         child:
-                                        Icon(Icons.close)
-                                    ),
-                                  ),
-                                ],
-                              )
-                          ),
-                        ).toList(),
+                                        SizedBox(
+                                            width: 30,
+                                            child:
+                                            Icon(Icons.close)
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                            ).toList(),
+                          )
                       )
+                    )
                   )
-              )
-
             )
           ],
         ),

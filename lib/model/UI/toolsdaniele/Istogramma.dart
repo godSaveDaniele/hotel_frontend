@@ -28,7 +28,7 @@ class Istogramma extends StatelessWidget {
       List<BarChartGroupData> barGroups = [];
       data.forEach((key, value) {
         List<BarChartRodData> astine = [];
-        astine.add(BarChartRodData(y: value, colors: [Colors.red]));
+        astine.add(BarChartRodData(y: value, colors: [Colors.blue[900]!]));
         barGroups.add(BarChartGroupData(
           x: data.keys.toList().indexOf(key),
           barRods: astine,
@@ -36,7 +36,7 @@ class Istogramma extends StatelessWidget {
       });
 
       return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment:MainAxisAlignment.center,
           children: [
             SizedBox(height: 20),
             Text("Score medio sulla base delle nazionalità dei reviewer",
@@ -52,7 +52,7 @@ class Istogramma extends StatelessWidget {
                     height: 240,
                     child: BarChart(
                       BarChartData(
-                        backgroundColor: Colors.yellow.withOpacity(0.1),
+                        backgroundColor: Colors.lightBlue[50],
                         alignment: BarChartAlignment.spaceAround,
                         minY: data.values.toList().reduce(min) - 0.2,
                         maxY: data.values.toList().reduce(max) + 0.2,

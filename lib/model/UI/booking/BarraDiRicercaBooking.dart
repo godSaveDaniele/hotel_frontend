@@ -59,7 +59,12 @@ class BarraDiRicercaBookingState extends State<BarraDiRicercaBooking> {
               width:250,
               height:400,
               child: Scaffold(
-                  appBar: AppBar(title: Text("Tag suggeriti")),
+
+                  appBar: AppBar(
+                      title: Text("Spesso gli utenti \n selezionano anche...",
+                          style: TextStyle( fontSize: 20)
+                      )
+                  ),
                   body: TagSuggeritiBox()
               )
           ),
