@@ -21,28 +21,35 @@ class BarraDiRicercaState extends State<BarraDiRicerca> {
     if (!nazionalitaCaricate){ _getNazionalita(); nazionalitaCaricate=true;}
     return SizedBox(
         height: 500,
-        width:650,
+        width:700,
         child: Row(
           children: [
             Row(
               children: [
                 SizedBox(width: 10.0),
-                DropdownButton<String>(
-                  value:null,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _campiSelezionati.add(newValue!);
-                      _campiMenuTendina.remove(newValue);
-                      widget.aggiorna();
-                    });
-                  },
-                  items: _campiMenuTendina.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Scegli le nazionalità da confrontare", style: TextStyle( fontWeight: FontWeight.bold, fontSize: 20, color: Colors.blue )),
+                    SizedBox(height: 20),
+                    DropdownButton<String>(
+                      value:null,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _campiSelezionati.add(newValue!);
+                          _campiMenuTendina.remove(newValue);
+                          widget.aggiorna();
+                        });
+                      },
+                      items: _campiMenuTendina.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ]
+                )
               ],
             ),
             SizedBox(width: 20.0),
